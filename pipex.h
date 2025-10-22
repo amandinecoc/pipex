@@ -6,7 +6,7 @@
 /*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 04:50:51 by acocoual          #+#    #+#             */
-/*   Updated: 2025/10/22 05:21:40 by acocoual         ###   ########.fr       */
+/*   Updated: 2025/10/22 05:49:14 by acocoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ typedef enum e_status
 
 typedef struct s_pipex
 {
-	char    file1[100];
-	char    cmd1[100];
-    char    file2[100];
-    char    cmd2[100];
+	char    *file1;
+	char    *cmd1;
+    char    *file2;
+    char    *cmd2;
 }					t_pipex;
 
 /* ************************************************************************** */
