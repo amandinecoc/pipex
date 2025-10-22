@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/10/22 05:21:58 by acocoual         ###   ########.fr       */
+/*   Created: 2025/05/22 20:47:28 by amandine          #+#    #+#             */
+/*   Updated: 2025/06/17 21:31:59 by acocoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int main(int argc, char **argv)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-    t_pipex pipex1;
-    
-    if (argc != 5)
-        return;
-    pipex1.file1 = ft_strcpy(argv[1]);
-    pipex1.cmd1 = ft_strcpy(argv[2]);
-    pipex1.file2 = ft_strcpy(argv[3]);
-    pipex1.cmd2 = ft_strcpy(argv[4]);
-        
+	char	*tmp;
+	int		len;
+	int		i;
+
+	len = nmemb * size;
+	i = 0;
+	tmp = malloc(sizeof(char) * len);
+	if (!tmp)
+		return (NULL);
+	while (i < len)
+	{
+		tmp[i] = 0;
+		i++;
+	}
+	return (tmp);
 }

@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/10/22 05:21:58 by acocoual         ###   ########.fr       */
+/*   Created: 2025/05/22 20:24:50 by amandine          #+#    #+#             */
+/*   Updated: 2025/06/17 21:32:34 by acocoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int main(int argc, char **argv)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-    t_pipex pipex1;
-    
-    if (argc != 5)
-        return;
-    pipex1.file1 = ft_strcpy(argv[1]);
-    pipex1.cmd1 = ft_strcpy(argv[2]);
-    pipex1.file2 = ft_strcpy(argv[3]);
-    pipex1.cmd2 = ft_strcpy(argv[4]);
-        
+	char	*tmp_d;
+	char	*tmp_s;
+	int		i;
+
+	if (!dest && !src)
+		return (NULL);
+	tmp_d = (char *)dest;
+	tmp_s = (char *)src;
+	if (tmp_d > tmp_s && (tmp_s + n) > tmp_d)
+	{
+		while (n-- > 0)
+			tmp_d[n] = tmp_s[n];
+	}
+	else
+	{
+		i = 0;
+		while (i < (int)n)
+		{
+			tmp_d[i] = tmp_s[i];
+			i++;
+		}
+	}
+	return (dest);
 }

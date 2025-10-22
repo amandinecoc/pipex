@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/10/22 05:21:58 by acocoual         ###   ########.fr       */
+/*   Created: 2025/05/22 20:47:37 by amandine          #+#    #+#             */
+/*   Updated: 2025/06/17 21:32:24 by acocoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int main(int argc, char **argv)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-    t_pipex pipex1;
-    
-    if (argc != 5)
-        return;
-    pipex1.file1 = ft_strcpy(argv[1]);
-    pipex1.cmd1 = ft_strcpy(argv[2]);
-    pipex1.file2 = ft_strcpy(argv[3]);
-    pipex1.cmd2 = ft_strcpy(argv[4]);
-        
+	char	*str;
+	char	strc;
+	size_t	i;
+
+	str = (char *)s;
+	strc = (char)c;
+	i = 0;
+	if (n == 0)
+		return (NULL);
+	while (i < n)
+	{
+		if (str[i] == strc)
+			return ((void *)&str[i]);
+		i++;
+	}
+	return (NULL);
 }

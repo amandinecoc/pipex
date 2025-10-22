@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/10/22 05:21:58 by acocoual         ###   ########.fr       */
+/*   Created: 2025/05/22 20:25:03 by amandine          #+#    #+#             */
+/*   Updated: 2025/06/17 21:33:19 by acocoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int main(int argc, char **argv)
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
-    t_pipex pipex1;
-    
-    if (argc != 5)
-        return;
-    pipex1.file1 = ft_strcpy(argv[1]);
-    pipex1.cmd1 = ft_strcpy(argv[2]);
-    pipex1.file2 = ft_strcpy(argv[3]);
-    pipex1.cmd2 = ft_strcpy(argv[4]);
-        
+	unsigned int	i;
+	unsigned int	j;
+	unsigned int	destorig;
+
+	destorig = ft_strlen(dest);
+	i = destorig;
+	j = 0;
+	if (size <= destorig)
+		return (size + ft_strlen(src));
+	while (src[j] != '\0' && (i + 1) < size)
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
+	return (destorig + ft_strlen(src));
 }

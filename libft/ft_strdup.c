@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/10/22 05:21:58 by acocoual         ###   ########.fr       */
+/*   Created: 2025/05/22 20:47:54 by amandine          #+#    #+#             */
+/*   Updated: 2025/06/17 21:33:06 by acocoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int main(int argc, char **argv)
+char	*ft_strdup(const char *s)
 {
-    t_pipex pipex1;
-    
-    if (argc != 5)
-        return;
-    pipex1.file1 = ft_strcpy(argv[1]);
-    pipex1.cmd1 = ft_strcpy(argv[2]);
-    pipex1.file2 = ft_strcpy(argv[3]);
-    pipex1.cmd2 = ft_strcpy(argv[4]);
-        
+	char	*dest;
+	int		i;
+
+	dest = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!dest)
+		return (NULL);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		dest[i] = s[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

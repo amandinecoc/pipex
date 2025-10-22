@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/10/22 05:21:58 by acocoual         ###   ########.fr       */
+/*   Created: 2025/05/22 20:24:46 by amandine          #+#    #+#             */
+/*   Updated: 2025/06/17 21:32:31 by acocoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int main(int argc, char **argv)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-    t_pipex pipex1;
-    
-    if (argc != 5)
-        return;
-    pipex1.file1 = ft_strcpy(argv[1]);
-    pipex1.cmd1 = ft_strcpy(argv[2]);
-    pipex1.file2 = ft_strcpy(argv[3]);
-    pipex1.cmd2 = ft_strcpy(argv[4]);
-        
+	unsigned char	*tmp_dest;
+	unsigned char	*tmp_src;
+
+	if (dest == (void *)0 && src == (void *)0)
+		return (dest);
+	tmp_dest = (unsigned char *)dest;
+	tmp_src = (unsigned char *)src;
+	while (n > 0)
+	{
+		*tmp_dest = *tmp_src;
+		tmp_dest++;
+		tmp_src++;
+		n--;
+	}
+	return (dest);
 }

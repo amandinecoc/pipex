@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/10/22 05:21:58 by acocoual         ###   ########.fr       */
+/*   Created: 2025/05/22 21:05:05 by amandine          #+#    #+#             */
+/*   Updated: 2025/06/17 21:32:52 by acocoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-
-
-int main(int argc, char **argv)
+void	ft_putnbr_fd(int n, int fd)
 {
-    t_pipex pipex1;
-    
-    if (argc != 5)
-        return;
-    pipex1.file1 = ft_strcpy(argv[1]);
-    pipex1.cmd1 = ft_strcpy(argv[2]);
-    pipex1.file2 = ft_strcpy(argv[3]);
-    pipex1.cmd2 = ft_strcpy(argv[4]);
-        
+	long long	nbr;
+
+	nbr = n;
+	if (nbr < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nbr = -nbr;
+	}
+	if (nbr >= 10)
+	{
+		ft_putnbr_fd(nbr / 10, fd);
+		ft_putchar_fd(nbr % 10 + '0', fd);
+	}
+	else
+	{
+		ft_putchar_fd(nbr + '0', fd);
+	}
 }
