@@ -6,11 +6,23 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/10/27 23:59:06 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/01 12:44:57 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+// fil1 existe = access(fil1, F_OK | R_OK);
+// fil2 existe ou creer = acccess(fil2, F_OK);
+// is OK = access(fl2, W_OK);
+// is not ok = create fil2 et access(fil2, F_OK | W_OK);
+// creste variable PATH = PATH = (ft_strcmp("PATH =", *envps))
+// suppr "PATH =" in PATH et split PATH :
+
+// tab cmd1 = split(cmd1, ' ')
+// tab cmd2 = split(cmd2, ' ')
+// chercher cmd1[0] dans PATH 
+// access(PATH[i] + cmd1[j], X_OK);  
 
 int fill_struct_pipex(t_pipex *pipex1, char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 04:50:51 by acocoual          #+#    #+#             */
-/*   Updated: 2025/10/27 23:52:27 by amandine         ###   ########.fr       */
+/*   Updated: 2025/10/28 00:24:32 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/types.h>
+# include <sys/wait.h>
 # include <unistd.h>
-#include <sys/wait.h>
-
 
 /* ************************************************************************** */
 /*TYPEDEF*/
@@ -38,11 +37,15 @@ typedef struct s_pipex
 	char	*cmd1;
 	char	*file2;
 	char	*cmd2;
+	char	*path;
+	char	**tab_cmd1;
+	char	**tab_cmd2;
+	char	**tab_path;
 }			t_pipex;
 
 /* ************************************************************************** */
 /*PARSING*/
-int fill_struct_pipex(t_pipex *pipex1, char **argv);
+int			fill_struct_pipex(t_pipex *pipex1, char **argv);
 
 /* ************************************************************************** */
 /*PIPEX*/
