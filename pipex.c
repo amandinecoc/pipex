@@ -6,7 +6,7 @@
 /*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/11 13:38:19 by acocoual         ###   ########.fr       */
+/*   Updated: 2025/11/11 14:05:20 by acocoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@
 // tab cmd1 = split(cmd1, ' ')
 // tab cmd2 = split(cmd2, ' ')
 // chercher cmd1[0] dans PATH 
-// access(PATH[i] + cmd1[j], X_OK);  
+// access(PATH[i] + cmd1[j], X_OK);
+
+// dup file1 pour executer la cmd1 sur le dup
+
+
 
 void create_path(t_pipex *pipex1, char **envp)
 {

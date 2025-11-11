@@ -6,7 +6,7 @@
 /*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 02:31:12 by acocoual          #+#    #+#             */
-/*   Updated: 2025/10/22 02:56:47 by acocoual         ###   ########.fr       */
+/*   Updated: 2025/11/11 14:10:16 by acocoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 // en utilisant éventuellement la catégorie LC_MESSAGES de la localisation pour sélectionner la langue appropriée. 
 // Cette chaîne ne doit pas être modifiée par l'application,
 // mais peut être écrasée par un appel ultérieur à perror(3) ou strerror().
-//  Aucune autre fonction de bibliothèque ne modifie cette chaîne.
+// Aucune autre fonction de bibliothèque ne modifie cette chaîne.
 
 // access : int access(const char *pathname, int mode)
 // access() vérifie si le processus appelant peut accéder au fichier pathname.
