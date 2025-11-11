@@ -6,17 +6,17 @@
 /*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/10 16:12:45 by acocoual         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:38:19 by acocoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 // fil1 existe = access(fil1, F_OK | R_OK);
-// fil2 existe ou creer = acccess(fil2, F_OK);
+// fil2 existe ou creer = access(fil2, F_OK);
 // is OK = access(fl2, W_OK);
 // is not ok = create fil2 et access(fil2, F_OK | W_OK);
-// create variable PATH = PATH = (ft_strcmp("PATH =", *envps))
+// create variable PATH = PATH = (ft_strcmp("PATH =", **envp))
 // suppr "PATH =" in PATH et split PATH :
 
 // tab cmd1 = split(cmd1, ' ')
@@ -24,12 +24,39 @@
 // chercher cmd1[0] dans PATH 
 // access(PATH[i] + cmd1[j], X_OK);  
 
-int create_path(t_pipex *pipex1)
+void create_path(t_pipex *pipex1, char **envp)
 {
-    int status;
+    int i;
+    int j;
+    char cmp[] = "PATH =";
     
-    status = 0;
-    while()
+    i = 0;
+    while(envp[i])
+    {
+        j = 0;
+        while (envp[i] != cmp[j] && envp[i] != '\0')
+            i++;
+        if (envp[i] == cmp[j])
+        {
+            while (cmp[j])
+            {
+                if (envp[i] != cmp[j])
+                    break;
+                i++;
+                j++;
+            }
+            if (cmp[j] == '\0')
+            {
+                j = 0;
+                while (envp[i])
+                {
+                    pipex1->path[j] = envp[i];
+                    i++;
+                    j++;
+                }
+            }
+        }
+    }
 }
 
 int check_access(t_pipex *pipex1)
