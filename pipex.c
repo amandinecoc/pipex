@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/23 22:15:02 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/23 22:26:32 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 // create variable PATH = PATH = (ft_strcmp("PATH =", **envp))
 // suppr "PATH =" in PATH et split PATH :
 
-// tab cmd1 = split(cmd1, ' ')
-// tab cmd2 = split(cmd2, ' ')
 // chercher cmd1[0] dans PATH 
 // access(PATH[i] + cmd1[j], X_OK);
 
@@ -32,23 +30,23 @@
 
 /* ************************************************************************** */
 
-// int check_access(t_pipex *pipex1)
-// {
-//     int status;
+int check_access(t_pipex *pipex1)
+{
+    int status;
 
-//     status = access(pipex1->file1, F_OK | R_OK);
-//     if (status != 0)
-//         return;
-//     status = access(pipex1->file2, F_OK);
-//     if (status != 0)
-//     {
-//         // create file2
-//     }
-//     status =access(pipex1->file2, W_OK);
-//     if (status != 0)
-//         return;
-//     // pas faire fonction a part mauvaise idee
-// }
+    status = access(pipex1->file1, F_OK | R_OK);
+    if (status != 0)
+        return;
+    status = access(pipex1->file2, F_OK);
+    if (status != 0)
+    {
+        // create file2
+    }
+    status =access(pipex1->file2, W_OK);
+    if (status != 0)
+        return;
+    // pas faire fonction a part mauvaise idee
+}
 
 void create_path(t_pipex *pipex1, char **envp)
 {
@@ -86,10 +84,14 @@ int fill_struct_pipex(t_pipex *pipex1, char **argv, char **envp)
     pipex1->cmd2 = ft_strdup(argv[4]);
     if (!pipex1->cmd2)
         return (free(pipex1->file1), free(pipex1->cmd1), free(pipex1->file2), malloc_failure);
+    pipex1->tab_cmd1 = split(pipex1->cmd1, ' ');
+    if (!pipex1->tab_cmd1)
+        return (free(pipex1->file1), free(pipex1->cmd1), free(pipex1->file2), free(pipex1->cmd2), malloc_failure);
+    pipex1->tab_cmd2 = split(pipex1->cmd2, ' ');
+    if (!pipex1->tab_cmd2)
+        return (free(pipex1->file1), free(pipex1->cmd1), free(pipex1->file2), free(pipex1->cmd2), free(pipex1->tab_cmd1), malloc_failure);
     pipex1->tab_path = NULL;
     create_path(pipex1, envp);
-    pipex1->tab_cmd1 = NULL;
-    pipex1->tab_cmd2 = NULL;
     return (Success);
 }
 
