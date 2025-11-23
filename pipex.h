@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 04:50:51 by acocoual          #+#    #+#             */
-/*   Updated: 2025/10/28 00:24:32 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/23 22:01:38 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef enum e_status
 {
 	Success,
 	malloc_failure,
+	path_error;
 }			t_status;
 
 typedef struct s_pipex
@@ -37,7 +38,6 @@ typedef struct s_pipex
 	char	*cmd1;
 	char	*file2;
 	char	*cmd2;
-	char	*path;
 	char	**tab_cmd1;
 	char	**tab_cmd2;
 	char	**tab_path;

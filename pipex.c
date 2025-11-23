@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/11 14:05:20 by acocoual         ###   ########.fr       */
+/*   Updated: 2025/11/23 22:15:02 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,63 +25,54 @@
 // access(PATH[i] + cmd1[j], X_OK);
 
 // dup file1 pour executer la cmd1 sur le dup
+// execve(cmd, mycmdargs, envp); // Si execve réussit, le processus se termine
+// // perror("Erreur"); <- ajouter perror pour le débogage
+// free(cmd) // si execve échoue, on libère la mémoire et on essaie un autre chemin
+// } return (EXIT_FAILURE);
 
+/* ************************************************************************** */
 
+// int check_access(t_pipex *pipex1)
+// {
+//     int status;
+
+//     status = access(pipex1->file1, F_OK | R_OK);
+//     if (status != 0)
+//         return;
+//     status = access(pipex1->file2, F_OK);
+//     if (status != 0)
+//     {
+//         // create file2
+//     }
+//     status =access(pipex1->file2, W_OK);
+//     if (status != 0)
+//         return;
+//     // pas faire fonction a part mauvaise idee
+// }
 
 void create_path(t_pipex *pipex1, char **envp)
 {
+    char *path_envp;
     int i;
-    int j;
-    char cmp[] = "PATH =";
-    
+
     i = 0;
-    while(envp[i])
+    path_envp = NULL;
+    while (envp[i])
     {
-        j = 0;
-        while (envp[i] != cmp[j] && envp[i] != '\0')
-            i++;
-        if (envp[i] == cmp[j])
+        if (ft_strnstr(envp[i], "PATH=", 6) != NULL)
         {
-            while (cmp[j])
-            {
-                if (envp[i] != cmp[j])
-                    break;
-                i++;
-                j++;
-            }
-            if (cmp[j] == '\0')
-            {
-                j = 0;
-                while (envp[i])
-                {
-                    pipex1->path[j] = envp[i];
-                    i++;
-                    j++;
-                }
-            }
+            path_envp = ft_strdup(envp[i] + 5);
+            break;
         }
+        i++;
     }
+    if (path_envp == NULL)
+        return;
+    pipex1->tab_path = ft_split(path_envp, ':');
+    free(path_envp);
 }
 
-int check_access(t_pipex *pipex1)
-{
-    int status;
-
-    status = access(pipex1->file1, F_OK | R_OK);
-    if (status != 0)
-        return;
-    status = access(pipex1->file2, F_OK);
-    if (status != 0)
-    {
-        // create file2
-    }
-    status =access(pipex1->file2, W_OK);
-    if (status != 0)
-        return;
-    // pas faire fonction a part mauvaise idee
-}
-
-int fill_struct_pipex(t_pipex *pipex1, char **argv)
+int fill_struct_pipex(t_pipex *pipex1, char **argv, char **envp)
 {
     pipex1->file1 = ft_strdup(argv[1]);
     if (!pipex1->file1)
@@ -95,6 +86,10 @@ int fill_struct_pipex(t_pipex *pipex1, char **argv)
     pipex1->cmd2 = ft_strdup(argv[4]);
     if (!pipex1->cmd2)
         return (free(pipex1->file1), free(pipex1->cmd1), free(pipex1->file2), malloc_failure);
+    pipex1->tab_path = NULL;
+    create_path(pipex1, envp);
+    pipex1->tab_cmd1 = NULL;
+    pipex1->tab_cmd2 = NULL;
     return (Success);
 }
 
@@ -106,8 +101,8 @@ int main(int argc, char **argv, char **envp)
     (void)envp;
     if (argc != 5)
         return (1);
-    status = fill_struct_pipex(&pipex1, argv);
+    status = fill_struct_pipex(&pipex1, argv, envp);
     if (status != Success)
-        return (malloc_failure);
-        
+        return (status);
+    return (0);
 }
