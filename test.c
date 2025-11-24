@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 02:37:36 by amandine          #+#    #+#             */
-/*   Updated: 2025/11/24 02:37:41 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/24 02:48:29 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ tab 1 -l
 tab 2 -a
 tab 3 NULL
 
+ls -a
+ls -a
+ls 
+-a 
+access(tab_cmd1[0], X_OK)
+tab_envp 
+ls -a 
+home/file/ls 
 // fil1 existe = access(fil1, F_OK | R_OK);
 // fil2 existe ou creer = access(fil2, F_OK);
 // is OK = access(fl2, W_OK);
