@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 04:50:51 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/24 02:39:21 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/24 19:47:46 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef enum e_status
 	Success,
 	malloc_failure,
 	path_error,
+	command_not_found,
 }			t_status;
 
 typedef struct s_pipex
@@ -45,8 +46,8 @@ typedef struct s_pipex
 
 /* ************************************************************************** */
 /*PARSING*/
-int			fill_struct_pipex(t_pipex *pipex1, char **argv, char **envp);
-void		create_path(t_pipex *pipex1, char **envp);
+int			fill_struct_pipex(t_pipex *pipex, char **argv, char **envp);
+void		create_path(t_pipex *pipex, char **envp);
 void		print_error(int status);
 
 /* ************************************************************************** */
