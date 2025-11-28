@@ -6,24 +6,22 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 02:33:24 by amandine          #+#    #+#             */
-/*   Updated: 2025/11/28 12:57:27 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/28 13:07:33 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 // dup fil1 !!!
-int process_child1(int f1, t_pipex *data)
+int process_child1(int f1, t_pipex *data, char **envp)
 {
-    char *argv[] = { "ls", "-l", NULL };
-    char *envp[] = { NULL };
     execve(data->cmd1, data->tab_cmd1, envp);
     if (execve(data->cmd1, data->tab_cmd1, envp) == -1)
         perror("execve");
     return(Success);
 }
 
-int process_child2(int f2, t_pipex *data)
+int process_child2(int f2, t_pipex *data, char **envp)
 {
     
 }
@@ -40,7 +38,7 @@ int execute_fonction(int f1, int f2, t_pipex *data, char **envp)
     if (child1 < 0)
          return (perror("Fork: "), fork_failure);
     else if (child1 == 0)
-        process_child1(f1, data);
+        process_child1(f1, data, envp);
     else
     {
         int status;
@@ -51,7 +49,7 @@ int execute_fonction(int f1, int f2, t_pipex *data, char **envp)
     if (child2 < 0)
          return (perror("Fork: "), fork_failure);
     if (child2 == 0)
-        process_child2(f2, data);
+        process_child2(f2, data, envp);
     // parent = fork();
     // if (parent < 0)
     //      return (perror("Fork: "), fork_failure);

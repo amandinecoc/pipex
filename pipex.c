@@ -6,29 +6,11 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/25 00:06:58 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/28 13:06:46 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-// int check_access(t_pipex *data)
-// {
-//     int status;
-
-//     status = access(data->file1, F_OK | R_OK);
-//     if (status != 0)
-//         return;
-//     status = access(data->file2, F_OK);
-//     if (status != 0)
-//     {
-//         // create file2
-//     }
-//     status =access(data->file2, W_OK);
-//     if (status != 0)
-//         return;
-//     // pas faire fonction a part mauvaise idee
-// }
 
 int check_files(t_pipex *data)
 {
@@ -41,7 +23,6 @@ int check_files(t_pipex *data)
         return (-1);
     return (0);
 }
-
 
 char *create_cmd(t_pipex *data, char *cmd)
 {
