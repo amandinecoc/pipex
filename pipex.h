@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 04:50:51 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/28 11:39:45 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/28 12:40:41 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ typedef enum e_status
 	malloc_failure,
 	path_error,
 	command_not_found,
+	fork_failure,
+	open_failure,
+	dup_failure,
 }			t_status;
 
 typedef struct s_pipex
