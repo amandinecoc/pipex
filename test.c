@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 02:37:36 by amandine          #+#    #+#             */
-/*   Updated: 2025/11/28 11:48:28 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/28 11:54:20 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,3 +117,52 @@ int main(void)
 // // perror("Erreur"); <- ajouter perror pour le débogage
 // free(cmd) // si execve échoue, on libère la mémoire et on essaie un autre chemin
 // } return (EXIT_FAILURE);
+
+void    pipex(int f1, int f2, char *cmd1, char *cmd2)
+{
+    int   end[2];
+    int   status;
+    pid_t child1;
+    pid_t child2;    pipe(end);
+    
+    child1 = fork();
+    if (child1 < 0)
+         return (perror("Fork: "));
+    if (child1 == 0)
+        child_one(f1, cmd1);
+    child2 = fork();
+    if (child2 < 0)
+         return (perror("Fork: "));
+    if (child2 == 0)
+        child_two(f2, cmd2);
+    close(end[0]);         // this is the parent
+    close(end[1]);         // doing nothing
+    waitpid(child1, &status, 0);  // supervising the children
+    waitpid(child2, &status, 0);  // while they finish their tasks
+}
+
+int main(int ac, char **ag, char **envp)
+{
+    int f1;
+    int f2;
+    f1 = open(ag[1], O_RDONLY);
+    f2 = open(ag[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
+    if (f1 < 0 || f2 < 0)
+        return (-1);
+    pipex(f1, f2, ag, envp);
+    return (0);
+}
+
+void    pipex(int f1, int f2)
+{
+    int   end[2];
+    pid_t parent;    pipe(end);
+    
+    parent = fork();
+    if (parent < 0)
+         return (perror("Fork: "));
+    if (!parent) // if fork() returns 0, we are in the child process
+        child_process(f1, cmd1);
+    else
+        parent_process(f2, cmd2);
+}
