@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 04:50:51 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/30 20:07:39 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/30 20:20:00 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_pipex
 /*PARSING*/
 int			fill_struct_pipex(t_pipex *pipex, char **argv, char **envp);
 void		create_path(t_pipex *pipex, char **envp);
-int			access_cmd(t_pipex *data, int num);
+void		access_cmd(t_pipex *data, int num);
 char		*create_cmd(t_pipex *data, char *cmd);
 void		print_error(int status);
 int			pipex(t_pipex *data, char **envp);

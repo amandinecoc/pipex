@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:50:41 by amandine          #+#    #+#             */
-/*   Updated: 2025/11/30 19:44:27 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/30 20:15:54 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void free_pipex(t_pipex *data)
         free(data->tab_cmd2[i++]);
     free(data->tab_cmd2);
     i = 0;
-    
     if (data->tab_path != NULL)
     {
         while (data->tab_path[i])
