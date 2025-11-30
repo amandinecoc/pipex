@@ -6,21 +6,23 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/30 19:13:09 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/30 20:11:16 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int first_process(t_pipex *data, char **envp, int *pipefd)
+void first_process(t_pipex *data, char **envp, int *pipefd)
 {
     int infile_fd;
     
-    if (access(data->file1, F_OK) != 0)
-        return(perror("access"), EXIT_FAILURE);
+    if (data->cmd1 == NULL)
+        return(print_error(command_not_found), exit(EXIT_FAILURE));
+    if (access(data->file1, R_OK) != 0)
+        return(perror("access"), exit(EXIT_FAILURE));
     infile_fd = open(data->file1, O_RDONLY);
     if (infile_fd == -1)
-        return (perror("open"), close(infile_fd), EXIT_FAILURE);
+        return (perror("open"), close(infile_fd), exit(EXIT_FAILURE));
     close(pipefd[0]);
     dup2(infile_fd, STDIN_FILENO);
     dup2(pipefd[1], STDOUT_FILENO);
@@ -28,23 +30,27 @@ int first_process(t_pipex *data, char **envp, int *pipefd)
     close(infile_fd);
     execve(data->cmd1, data->tab_cmd1, envp);
     perror("execve");
-    return(EXIT_FAILURE);
+    return(exit(EXIT_FAILURE));
 }
 
-int second_process(t_pipex *data, char **envp, int *pipefd)
+void second_process(t_pipex *data, char **envp, int *pipefd)
 {
     int outfile_fd;
     
+    if (data->cmd2 == NULL)
+        return(print_error(command_not_found), exit(EXIT_FAILURE)); //command not found
+    if (access(data->file2, F_OK) == 0 && access(data->file2, W_OK) != 0)
+        return(perror("access"), exit(EXIT_FAILURE));
     outfile_fd = open(data->file2, O_CREAT | O_WRONLY | O_TRUNC, 0644);
     if (outfile_fd == -1)
-        return (perror("open"), close(outfile_fd), EXIT_FAILURE);
+        return (perror("open"), close(outfile_fd), exit(EXIT_FAILURE));
     dup2(pipefd[0], STDIN_FILENO);
     dup2(outfile_fd, STDOUT_FILENO);
     close(pipefd[0]);
     close(outfile_fd);
     execve(data->cmd2, data->tab_cmd2, envp);
     perror("execve");
-    return(EXIT_FAILURE);
+    return(exit(EXIT_FAILURE));
 }
 
 int	pipex(t_pipex *data, char **envp)
@@ -70,6 +76,7 @@ int	pipex(t_pipex *data, char **envp)
     close(pipefd[0]);
     waitpid(pid1, &status, 0);
     waitpid(pid2, &status, 0);
+  
     return (EXIT_SUCCESS);
 }
 
@@ -79,7 +86,7 @@ int main(int argc, char **argv, char **envp)
     t_pipex data;
 
     if (argc != 5)
-        return (1);
+        return (ft_putendl_fd("ERROR : invalid number of arguments", 2), EXIT_FAILURE);
     status = fill_struct_pipex(&data, argv, envp);
     if (status != Success)
         return (print_error(status), EXIT_FAILURE);

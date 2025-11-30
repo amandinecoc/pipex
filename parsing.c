@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 18:55:34 by amandine          #+#    #+#             */
-/*   Updated: 2025/11/30 18:56:30 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/30 20:08:24 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char *create_cmd(t_pipex *data, char *cmd)
     i = 0;
     if (access(cmd, X_OK) == 0)
         return (cmd);
+    if (data->tab_path == NULL)
+        return (NULL);
     new_cmd = ft_strjoin("/", cmd);
     if (!new_cmd)
         return (free(cmd), NULL);
@@ -43,6 +45,8 @@ int access_cmd(t_pipex *data, int num)
 
     if (num == 1)
     {
+        if(data->tab_cmd1[0] == NULL)
+            return(data->cmd1 = NULL, command_not_found);
         cmd = ft_strdup(data->tab_cmd1[0]);
         if (!cmd)
             return (malloc_failure);
@@ -52,6 +56,8 @@ int access_cmd(t_pipex *data, int num)
     }
     if (num == 2)
     {
+        if(data->tab_cmd2[0] == NULL)
+            return(data->cmd2 = NULL, command_not_found);
         cmd = ft_strdup(data->tab_cmd2[0]);
         if (!cmd)
             return (malloc_failure);
@@ -71,7 +77,7 @@ void create_path(t_pipex *data, char **envp)
     path_envp = NULL;
     while (envp[i])
     {
-        if (ft_strnstr(envp[i], "PATH=", 6) != NULL)
+        if (ft_strnstr(envp[i], "PATH=", 5) != NULL)
         {
             path_envp = ft_strdup(envp[i] + 5);
             break;

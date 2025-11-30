@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 04:50:51 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/30 19:15:54 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/30 20:07:39 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ char		*create_cmd(t_pipex *data, char *cmd);
 void		print_error(int status);
 int			pipex(t_pipex *data, char **envp);
 void		free_pipex(t_pipex *data);
-int			first_process(t_pipex *data, char **envp, int *pipefd);
-int			second_process(t_pipex *data, char **envp, int *pipefd);
+void		first_process(t_pipex *data, char **envp, int *pipefd);
+void		second_process(t_pipex *data, char **envp, int *pipefd);
 
 /* ************************************************************************** */
 /*PIPEX*/
