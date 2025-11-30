@@ -6,23 +6,11 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 18:55:34 by amandine          #+#    #+#             */
-/*   Updated: 2025/11/30 18:41:41 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/30 18:56:30 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-int check_files(t_pipex *data)
-{
-    int file1;
-    int file2;
-    
-    file1 = open(data->file1, F_OK | R_OK);
-    file2 = open(data->file2, F_OK | W_OK);
-    if (file1 < 0 || file2 < 0)
-        return (-1);
-    return (0);
-}
 
 char *create_cmd(t_pipex *data, char *cmd)
 {

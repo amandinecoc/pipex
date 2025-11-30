@@ -6,7 +6,7 @@
 #    By: amandine <amandine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/23 21:53:09 by amandine          #+#    #+#              #
-#    Updated: 2025/11/30 18:43:07 by amandine         ###   ########.fr        #
+#    Updated: 2025/11/30 18:51:12 by amandine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SOURCES_LIBFT += libft/ft_atoll.c
 
 SOURCES_PIPEX += pipex.c
 SOURCES_PIPEX += parsing.c
+SOURCES_PIPEX += error_handling.c
 
 #Objets#####################################
 
