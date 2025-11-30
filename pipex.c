@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/30 18:52:13 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/30 19:11:19 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ int main(int argc, char **argv, char **envp)
     if (status != Success);
         return (print_error(status), EXIT_FAILURE);
     pipex(&data, envp);
+    free_pipex(&data);
     return (0);
 }

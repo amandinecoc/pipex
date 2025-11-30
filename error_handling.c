@@ -6,12 +6,34 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:50:41 by amandine          #+#    #+#             */
-/*   Updated: 2025/11/30 18:57:48 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/30 19:10:57 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+void free_pipex(t_pipex *data)
+{
+    int i;
+
+    i = 0;
+    free(data->cmd1);
+    free(data->cmd2);
+    free(data->file1);
+    free(data->file2);
+    while (data->tab_cmd1[i])
+        free(data->tab_cmd1[i++]);
+    free(data->tab_cmd1);
+    i = 0;
+    while (data->tab_cmd2[i])
+        free(data->tab_cmd2[i++]);
+    free(data->tab_cmd2);
+    i = 0;
+    while (data->tab_path[i])
+        free(data->tab_path[i++]);
+    free(data->tab_path);
+}
+    
 void print_error(int status)
 {
     if (status == malloc_failure)
