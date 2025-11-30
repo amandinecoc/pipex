@@ -6,7 +6,7 @@
 /*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/30 19:11:19 by amandine         ###   ########.fr       */
+/*   Updated: 2025/11/30 19:13:09 by amandine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int main(int argc, char **argv, char **envp)
     if (argc != 5)
         return (1);
     status = fill_struct_pipex(&data, argv, envp);
-    if (status != Success);
+    if (status != Success)
         return (print_error(status), EXIT_FAILURE);
     pipex(&data, envp);
     free_pipex(&data);
