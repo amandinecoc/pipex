@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amandine <amandine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acocoual <acocoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 03:03:28 by acocoual          #+#    #+#             */
-/*   Updated: 2025/11/30 20:11:16 by amandine         ###   ########.fr       */
+/*   Updated: 2025/12/01 17:36:33 by acocoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int	pipex(t_pipex *data, char **envp)
     close(pipefd[0]);
     waitpid(pid1, &status, 0);
     waitpid(pid2, &status, 0);
-  
     return (EXIT_SUCCESS);
 }
 
